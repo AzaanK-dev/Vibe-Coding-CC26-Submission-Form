@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vibe Coding Hackathon CC'26 | Project Submission</title>
+  <link rel="icon" type="image/png" href="./logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="accent-bar"></div>
+    <div class="wrap" style="padding:0;">
+      <div class="logo-row">
+        <!-- Replace src with your actual logo-row img tags if available -->
+        <div class="logo-placeholder event-logo">CODE<span class="slash">//</span>CONNECT<span class="yr">'26</span>
+        </div>
+      </div>
+
+      <div class="hero-body">
+        <div class="event-tag"><i class="fa-solid fa-code"></i> &nbsp;Vibe Coding Hackathon</div>
+        <h1 class="event-title">Project<br><span class="accent">Submission</span></h1>
+        <p class="event-sub">Submit your final project for <strong>Vibe Coding Hackathon - CC'26</strong>.<br>All marked
+          <span class="req-star">*</span> fields are required.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- DEADLINE BANNER -->
+  <div class="deadline-banner" id="deadlineBanner">
+    <i class="fa-solid fa-clock"></i>
+    <span id="deadlineText">Calculating deadline…</span>
+  </div>
+
+  <!-- MAIN FORM -->
+  <main class="wrap">
+    <form id="submissionForm" novalidate>
+
+      <!-- ── SECTION 1: TEAM DETAILS ── -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">01</span>
+          <div>
+            <h2>Team Details</h2>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="teamName">Team Name <span class="req-star">*</span></label>
+          <input type="text" id="teamName" name="teamName" placeholder="e.g. Team Nexus" required maxlength="80">
+          <span class="err" id="err-teamName"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="leadName">Team Lead <span class="req-star">*</span></label>
+          <input type="text" id="leadName" name="leadName" placeholder="Team Lead Full name" required maxlength="120">
+          <span class="err" id="err-leadName"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="leadEmail">Team Lead Email <span class="req-star">*</span></label>
+          <input type="email" id="leadEmail" name="leadEmail" placeholder="lead@email.com" required maxlength="200">
+          <span class="err" id="err-leadEmail"></span>
+        </div>
+
+        <div class="field-group">
+          <label>Team Members <span class="req-star">*</span>
+            <span class="hint-inline">(excluding lead)</span>
+          </label>
+          <div id="membersContainer">
+            <div class="member-row">
+              <input type="text" name="member[]" placeholder="Member 1 full name" required maxlength="120"
+                class="member-input">
+            </div>
+            <div class="member-row">
+              <input type="text" name="member[]" placeholder="Member 2 full name" required maxlength="120"
+                class="member-input">
+            </div>
+          </div>
+          <button type="button" class="add-btn" id="addMemberBtn">+ Add member</button>
+          <span class="err" id="err-members"></span>
+        </div>
+      </div>
+
+      <!-- ── SECTION 2: PROJECT DETAILS ── -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">02</span>
+          <div>
+            <h2>Project Details</h2>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="projectName">Project Name <span class="req-star">*</span></label>
+          <input type="text" id="projectName" name="projectName" placeholder="e.g. EcoTrack AI" required
+            maxlength="120">
+          <span class="err" id="err-projectName"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="problemDomain">
+            Problem Domain <span class="req-star">*</span>
+          </label>
+
+          <div class="select-wrap">
+            <select id="problemDomain" name="problemDomain" required>
+              <option value="">— Select problem domain —</option>
+              <option value="Disaster Response">Disaster Response</option>
+              <option value="Threat Prevention">Threat Prevention</option>
+              <option value="Misinformation Control">Misinformation Control</option>
+            </select>
+
+            <i class="fa-solid fa-chevron-down select-arrow"></i>
+          </div>
+
+          <span class="err" id="err-problemDomain"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="projectType">Project Type <span class="req-star">*</span></label>
+          <div class="select-wrap">
+            <select id="projectType" name="projectType" required>
+              <option value="">— Select project type —</option>
+              <option value="Web Application">Web Application</option>
+              <option value="Mobile Application">Mobile Application</option>
+              <option value="Desktop Application">Desktop Application</option>
+              <option value="Other">Other</option>
+            </select>
+            <i class="fa-solid fa-chevron-down select-arrow"></i>
+          </div>
+          <span class="err" id="err-projectType"></span>
+        </div>
+
+        <!-- Conditional: Other type -->
+        <div class="field-group hidden" id="otherTypeGroup">
+          <label for="otherType">Specify Project Type <span class="req-star">*</span></label>
+          <input type="text" id="otherType" name="otherType" placeholder="Describe your project type" maxlength="120">
+          <span class="err" id="err-otherType"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="projectDesc">Project Description <span class="req-star">*</span></label>
+          <textarea id="projectDesc" name="projectDesc" rows="5" placeholder="Describe your project briefly" required
+            maxlength="500"></textarea>
+          <div class="char-count"><span id="descCount">0</span> / 500</div>
+          <span class="err" id="err-projectDesc"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="keyFeatures">Key Features <span class="req-star">*</span></label>
+          <textarea id="keyFeatures" name="keyFeatures" rows="4"
+            placeholder="List only main features of your project (one per line)." required maxlength="300"></textarea>
+          <div class="char-count"><span id="featCount">0</span> / 300</div>
+          <span class="err" id="err-keyFeatures"></span>
+        </div>
+      </div>
+
+      <!-- ── SECTION 3: PROJECT LINKS ── -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">03</span>
+          <div>
+            <h2>Project Links</h2>
+          </div>
+        </div>
+
+        <!-- Single conditional link (label/placeholder set by script.js) -->
+        <div class="field-group" id="projectLinkGroup">
+          <label for="projectLink">
+            <span id="projectLinkLabel">Live Product Link</span>
+            <span class="req-star" id="projectLinkStar">*</span>
+            <span class="hint-inline" id="projectLinkHint">(deployed/hosted URL)</span>
+          </label>
+          <input type="url" id="projectLink" name="projectLink" placeholder="https://yourapp.com" maxlength="500">
+          <span class="err" id="err-projectLink"></span>
+        </div>
+
+
+        <div class="field-group">
+          <label for="demoLink">Demo Link
+            <span class="hint-inline">(video walkthrough - optional)</span>
+          </label>
+          <input type="url" id="demoLink" name="demoLink" placeholder="https://youtu.be/…" maxlength="500">
+          <span class="err" id="err-demoLink"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="githubLink">GitHub Repository Link <span class="req-star">*</span></label>
+          <input type="url" id="githubLink" name="githubLink" placeholder="https://github.com/username/repo" required
+            maxlength="500">
+          <span class="err" id="err-githubLink"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="demoInstructions">Demo Instructions <span class="req-star">*</span></label>
+          <textarea id="demoInstructions" name="demoInstructions" rows="4"
+            placeholder="Demo-access instructions & setup requirements." required maxlength="300"></textarea>
+          <div class="char-count"><span id="demoCount">0</span> / 300</div>
+          <span class="err" id="err-demoInstructions"></span>
+        </div>
+
+        <!-- Mobile-specific note -->
+        <div class="info-box hidden conditional-mobile" id="mobileNote">
+          <i class="fa-solid fa-mobile-screen"></i>
+          <div>
+            <strong>Mobile Submission Note</strong>
+            <p>Provide a publicly accessible APK download link (Google Drive, Dropbox, etc.). Your Demo Instructions
+              must explain exactly how judges should install and run the app.</p>
+          </div>
+        </div>
+
+        <!-- Desktop-specific note -->
+        <div class="info-box hidden conditional-desktop-only" id="desktopNote">
+          <i class="fa-solid fa-desktop"></i>
+          <div>
+            <strong>Desktop Submission Note</strong>
+            <p>Provide either a hosted live URL, a downloadable build link, or a Docker/executable package link. Your
+              Demo Instructions must explain how judges can access or run the application.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 4: TECHNICAL DETAILS ── -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">04</span>
+          <div>
+            <h2>Technical Details</h2>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="techStack">Tools &amp; Technologies Used <span class="req-star">*</span></label>
+          <textarea id="techStack" name="techStack" rows="3"
+            placeholder="e.g. React, Node.js, MongoDB, TailwindCSS, Vite…" required maxlength="1000"></textarea>
+          <span class="err" id="err-techStack"></span>
+        </div>
+
+        <div class="field-group">
+          <label for="aiUsage">AI Usage Disclosure <span class="req-star">*</span></label>
+          <textarea id="aiUsage" name="aiUsage" rows="3" placeholder="Shortly describe AI tools usage in your project."
+            required maxlength="1000"></textarea>
+          <p class="field-note"><i class="fa-solid fa-robot"></i>AI can assist, but the core solution must be your own.
+            Judges will assess your understanding.</p>
+          <span class="err" id="err-aiUsage"></span>
+        </div>
+      </div>
+
+      <!-- ── SECTION 5: CONFIRMATION ── -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">05</span>
+          <div>
+            <h2>Confirmation</h2>
+          </div>
+        </div>
+
+
+
+        <div class="checkbox-group" id="confirmGroup">
+          <label class="checkbox-label">
+            <input type="checkbox" id="confirmCheck" name="confirmCheck" required>
+            <span class="checkmark"></span>
+            <span>I confirm that all information provided is accurate and complete. Our team has read and agrees to the
+              official Vibe Coding Hackathon CC'26 competition guidelines, judging criteria, and disqualification rules.</span>
+          </label>
+          <span class="err" id="err-confirmCheck"></span>
+        </div>
+
+        <div id="formMsg" class="form-msg hidden"></div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span id="btnText"><i class="fa-solid fa-paper-plane"></i> &nbsp;Submit Project</span>
+          <span id="btnLoader" class="hidden"><i class="fa-solid fa-circle-notch fa-spin"></i> &nbsp;Submitting…</span>
+        </button>
+      </div>
+
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Vibe Coding Hackathon - CC'26 </p>
+      <p class="footer-sub">For queries contact Azaan Mehtab Khan: +923214158518</p>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
